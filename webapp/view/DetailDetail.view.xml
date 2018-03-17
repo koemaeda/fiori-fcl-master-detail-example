@@ -1,0 +1,103 @@
+<mvc:View
+	controllerName="example.app.flc-northwind.controller.DetailDetail"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.m.semantic"
+	xmlns:footerbar="sap.ushell.ui.footerbar">
+
+	<semantic:DetailPage
+		id="page"
+		navButtonPress="onNavBack"
+		showNavButton="{device>/system/phone}"
+		title="{i18n>detailDetailTitle}"
+		busy="{detailDetailView>/busy}"
+		busyIndicatorDelay="{detailDetailView>/delay}">
+
+		<semantic:content>
+			<ObjectHeader
+				id="objectHeader"
+				title="{ShipName}"
+>
+			</ObjectHeader>
+			<IconTabBar
+				id="iconTabBar"
+				class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter
+						id="iconTabBarFilter1"
+						icon="sap-icon://hint"
+						tooltip="{i18n>detailDetailIconTabBarInfo}">
+					</IconTabFilter>
+					<IconTabFilter
+						id="iconTabBarFilter2"
+						icon="sap-icon://attachment"
+						tooltip="{i18n>detailIconTabBarAttachments}">
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+			<Table
+				id="lineItemsList"
+				width="auto"
+				items="{Order_Details}"
+				updateFinished="onListUpdateFinished"
+				noDataText="{i18n>detailDetailLineItemTableNoDataText}"
+				busyIndicatorDelay="{detailDetailView>/lineItemTableDelay}"
+				class="sapUiResponsiveMargin">
+				<headerToolbar>
+					<Toolbar id="lineItemsToolbar">
+						<Title
+							id="lineItemsHeader"
+							text="{detailDetailView>/lineItemListTitle}"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Text text="{i18n>detailDetailLineItemTableIDColumn}"/>
+					</Column>
+					<Column
+						minScreenWidth="Tablet"
+						demandPopin="true"
+						hAlign="End">
+						<Text text="{i18n>detailDetailLineItemTableUnitNumberColumn}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectIdentifier
+								title="{}"
+								text="{ProductID}"/>
+							<ObjectNumber
+								number="{
+									path: 'Quantity',
+									formatter: '.formatter.currencyValue'
+								}"
+/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</semantic:content>
+
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction
+				id="shareEmail"
+				press="onShareEmailPress"/>
+		</semantic:sendEmailAction>
+
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction
+				id="shareInJam"
+				visible="{FLP>/isShareInJamActive}"
+				press="onShareInJamPress"/>
+		</semantic:shareInJamAction>
+
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton
+				id="shareTile"
+				title="{detailDetailView>/saveAsTileTitle}"/>
+		</semantic:saveAsTileAction>
+
+	</semantic:DetailPage>
+
+</mvc:View>

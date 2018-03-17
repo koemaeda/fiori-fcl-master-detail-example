@@ -1,0 +1,12 @@
+<mvc:View
+	controllerName="example.app.flc-northwind.controller.App"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	busy="{appView>/busy}"
+	busyIndicatorDelay="{appView>/delay}"
+	xmlns="sap.m"
+	xmlns:f="sap.f">
+	<App>
+		<f:FlexibleColumnLayout id="idAppControl" />
+	</App>
+</mvc:View>
