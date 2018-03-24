@@ -4,6 +4,7 @@
 	displayBlock="true"
 	busy="{appView>/busy}"
 	busyIndicatorDelay="{appView>/delay}"
+  height="100%"
 	xmlns="sap.m"
 	xmlns:f="sap.f">
 	<App>
